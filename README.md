@@ -5,36 +5,35 @@ Built using Oficial images:
 * [MySQL](https://hub.docker.com/_/php/).
 * [PHPMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/).
 
-## Build steps
-* Change `.env-demo` to `.env` and set values.
+## Environment variables
+* Rename `.env-demo` to `.env` and set environment variables.
+
 ```bash
-#
-# ENVIROMENT_VARIABLES
+# APP Name
+APP=appname
 
-# nginx
-CONTAINER_NGINX=nginx
-
-# php
-CONTAINER_PHP=php7-fpm
-
-# app data 
-CONTAINER_APP_DATA=data-volume
+# Set persistent directories for 
+# the database and WordPress.
+PERSISTENT_APP=./wordpress
+PERSISTENT_DB=./db/mysql
 
 # mysql
-CONTAINER_MYSQL=mysql
-CONTAINER_MYSQL=mysql-data
-
-MYSQL_ROOT_PASSWORD=secret
+MYSQL_HOST=mysql
+MYSQL_ROOT_PASSWORD=pwd
 MYSQL_DATABASE=db
 MYSQL_USER=user
-MYSQL_PASSWORD=pwd
+MYSQL_PASSWORD=secret
 ```
 
+## Get WordPress
+Download [WordPress](https://wordpress.org/download/) into the main folder. Can change name and update `PERSISTENT_APP` value.
+
+## Run Docker
 * Run `docker-compose up` (needs [Docker Compose](https://docs.docker.com/compose/) installed).
 
 ## Once running
-* Go to your [http://localhost/](http://localhost/) and start configurate WordPress.
-* PhpMyAdmin at [http://localhost:8080/](http://localhost:8080/).
+* Go to your [http://0.0.0.0/](http://0.0.0.0/) and start configurate WordPress.
+* PhpMyAdmin at [http://0.0.0.0:8080/](http://0.0.0.0:8080/).
 
 ## Requirements
 * [Docker Engine](https://docs.docker.com/installation/).

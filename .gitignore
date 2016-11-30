@@ -1,4 +1,6 @@
 # Keep your env secret.
 .env
+wordpress
 db/mysql
 push-zero.sh
+nueva-web-casa-juventud.zip

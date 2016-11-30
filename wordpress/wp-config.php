@@ -1,11 +1,9 @@
 <?php
 
-/*
-define('DB_NAME', 'db');
-define('DB_USER', 'user');
-define('DB_PASSWORD', 'pwd');
-*/
-/* User env variables at development. */
+//define('DB_NAME', 'db');
+//define('DB_USER', 'user');
+//define('DB_PASSWORD', 'pwd');
+// User env variables to get MySQL values
 define('DB_NAME', getenv('MYSQL_DATABASE'));
 define('DB_USER', getenv('MYSQL_USER'));
 define('DB_PASSWORD', getenv('MYSQL_PASSWORD'));

@@ -3,7 +3,7 @@ version: '2'
 services:
   web:
     image: nginx:latest
-    container_name: "${CONTAINER_NGINX}"
+    container_name: "${APP}-nginx"
     ports:
       - "80:80"
     env_file: .env
@@ -12,19 +12,19 @@ services:
     links:
       - php
     volumes_from:
-      - wordpress-data
+      - app-data
 
   # php
   php:  
     build: ./php/
-    container_name: "${CONTAINER_PHP}"
+    container_name: "${APP}-php7fpm"
     env_file: .env
     expose:
       - 9000
     links:
       - mysql
     volumes_from:
-      - wordpress-data
+      - app-data
 
   # mysql
   mysql:
@@ -33,33 +33,29 @@ services:
       - mysql-data
     #ports:
     #  - "3306:3306"
-    container_name: "${CONTAINER_MYSQL}"
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pwd
+    container_name: "${APP}-mysql"
+    env_file: .env
   
   # wordpress data
-  wordpress-data:
+  app-data:
     image: php:7.0-fpm
-    container_name: "${CONTAINER_APP_DATA}"
+    container_name: "${APP}-data"
     volumes:
-      - ${SRC_APP_PERSISTENT}:/var/www/html
+      - ${PERSISTENT_APP}:/var/www/html
     command: "true"
   
   # mysql data
   mysql-data:
     image: mysql:latest
-    container_name: "${CONTAINER_MYSQL_DATA}"
+    container_name: "${APP}-mysql-data"
     volumes:
-      - ${SRC_DB_PERSISTENT}:/var/lib/mysql
+      - ${PERSISTENT_DB}:/var/lib/mysql
     command: "true"
   
   # phpmyadmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: "phpmyadmin"
+    container_name: "${APP}-phpmyadmin"
     ports:
       - 8080:80
     links:
