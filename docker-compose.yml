@@ -3,7 +3,7 @@ version: '2'
 services:
   web:
     image: nginx:latest
-    container_name: "${APP}-nginx"
+    container_name: "nginx"
     ports:
       - "80:80"
     env_file: .env
@@ -17,7 +17,7 @@ services:
   # php
   php:  
     build: ./php/
-    container_name: "${APP}-php7fpm"
+    container_name: "php7-fpm"
     env_file: .env
     expose:
       - 9000
@@ -33,13 +33,13 @@ services:
       - mysql-data
     #ports:
     #  - "3306:3306"
-    container_name: "${APP}-mysql"
+    container_name: "mysql"
     env_file: .env
   
   # wordpress data
   app-data:
     image: php:7.0-fpm
-    container_name: "${APP}-data"
+    container_name: "app-data"
     volumes:
       - ${PERSISTENT_APP}:/var/www/html
     command: "true"
@@ -47,7 +47,7 @@ services:
   # mysql data
   mysql-data:
     image: mysql:latest
-    container_name: "${APP}-mysql-data"
+    container_name: "mysql-data"
     volumes:
       - ${PERSISTENT_DB}:/var/lib/mysql
     command: "true"
@@ -55,7 +55,7 @@ services:
   # phpmyadmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: "${APP}-phpmyadmin"
+    container_name: "phpmyadmin"
     ports:
       - 8080:80
     links:
