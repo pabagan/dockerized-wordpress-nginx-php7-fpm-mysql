@@ -1,8 +1,8 @@
 # WordPress with nginx, php7-fpm, MySQL and PhpMyAdmin
 Built using Oficial images:
 * [Nginx](https://hub.docker.com/_/nginx/).
-* [PHP](https://hub.docker.com/_/mysql/) altered to install `docker-php-ext-install pdo pdo_mysql mysqli` (check `/php` folder).
-* [MySQL](https://hub.docker.com/_/php/).
+* [PHP](https://hub.docker.com/_/php/) altered to install `docker-php-ext-install pdo pdo_mysql mysqli` (check `/php` folder).
+* [MySQL](https://hub.docker.com/_/mysql/).
 * [PHPMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/).
 
 ## Environment variables
